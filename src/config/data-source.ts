@@ -4,7 +4,7 @@ import { EnvObject } from "@/config";
 
 export const AppDataSource = new DataSource({
   type: "postgres",
-  host: "localhost",
+  host: EnvObject.dbHost,
   port: 5432,
   username: EnvObject.dbUser,
   password: EnvObject.dbPassword,
