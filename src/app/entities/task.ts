@@ -11,18 +11,18 @@ export class Task {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column()
+  @Column({ nullable: false })
   title: string;
 
-  @Column()
+  @Column({ nullable: true })
   description: string;
 
-  @Column()
+  @Column({ nullable: false, default: false })
   is_completed: boolean;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ nullable: false })
   inserted_at: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ nullable: false })
   updated_at: Date;
 }
