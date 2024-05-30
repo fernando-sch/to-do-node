@@ -1,6 +1,7 @@
 import "reflect-metadata";
 import { DataSource } from "typeorm";
 import { EnvObject } from "@/config";
+import { Task } from "@/app/entities/task";
 
 export const AppDataSource = new DataSource({
   type: "postgres",
@@ -11,7 +12,7 @@ export const AppDataSource = new DataSource({
   database: EnvObject.dbName,
   synchronize: true,
   logging: false,
-  entities: [],
+  entities: [Task],
   migrations: [],
   subscribers: [],
 });
