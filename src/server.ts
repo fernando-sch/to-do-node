@@ -1,22 +1,19 @@
 import * as express from "express";
 import { AppDataSource } from "@/config";
-
-import { Router, Request, Response } from "express";
+import { routes } from "@/app_web/routes";
 
 const app = express();
-
-const route = Router();
 
 app.use(express.json());
 
 AppDataSource.initialize()
-  .then(() => console.log("DataBase successfully connected"))
-  .catch((error) => console.log(error));
+  .then(() => {
+    console.log("Data Source has been initialized!");
+  })
+  .catch((err) => {
+    console.error("Error during Data Source initialization:", err);
+  });
 
-route.get("/", (req: Request, res: Response) => {
-  res.json({ message: "hello world with Typescript" });
-});
-
-app.use(route);
+app.use("/", routes);
 
 app.listen(8080, () => "Server running on port 8080");
