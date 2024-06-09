@@ -1,2 +1,2 @@
 export * from "./env-variables";
-export * from "./data-source";
+export * from "./data-manager";
