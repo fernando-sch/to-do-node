@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { TaskRepository } from "@/app/repositories/task";
+import { renderMany } from "@/app_web/views/task";
 
 export class TaskController {
   private repository: TaskRepository = new TaskRepository();
@@ -30,6 +31,20 @@ export class TaskController {
       }
 
       return res.status(201).json({ status: "ok", message: "created" });
+    } catch (error) {
+      res.status(500).json({
+        status: "failed",
+        message: "internal_server_error",
+        errors: error,
+      });
+    }
+  }
+
+  async list(_: Request, res: Response) {
+    try {
+      const tasks = await this.repository.list();
+
+      return res.status(200).json(renderMany(tasks));
     } catch (error) {
       res.status(500).json({
         status: "failed",

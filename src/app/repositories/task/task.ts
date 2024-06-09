@@ -19,4 +19,8 @@ export class TaskRepository extends BaseRepository<Task> {
 
     return this.repository.insert(taskEntity);
   }
+
+  list(): Promise<Task[]> {
+    return this.repository.find();
+  }
 }
