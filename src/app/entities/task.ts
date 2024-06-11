@@ -4,10 +4,20 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
+  BaseEntity,
 } from "typeorm";
 
+export interface ITask {
+  id: string;
+  title: string;
+  description: string | null;
+  is_completed: boolean;
+  inserted_at: Date;
+  updated_at: Date;
+}
+
 @Entity()
-export class Task {
+export class Task extends BaseEntity implements ITask {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
